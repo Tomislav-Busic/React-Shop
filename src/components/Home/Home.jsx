@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.scss';
 import axios from 'axios';
+import CategoryCard from '../CategoryCard/CategoryCard';
 
 const Home = () => {
     const [loading, setLoading] = useState(true);
@@ -35,13 +34,7 @@ const Home = () => {
             { !loading && 
                 data.map((product) => {
                     return (
-                        <Card style={{ width: '18rem', margin: '1rem' }}>
-                            <Card.Img variant="top" src={ product.image } />
-                            <Card.Body>
-                              <Card.Title>{ product.name }</Card.Title>
-                              <Button variant="primary">See More</Button>
-                            </Card.Body>
-                        </Card>
+                        <CategoryCard product={product} />
                     )
                 })
             }
