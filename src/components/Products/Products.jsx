@@ -8,7 +8,7 @@ const Products = () => {
     const [categoryId, setCategoryId] = useState(localStorage.getItem('id'));
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
-
+    const [category, setCategory] = useState([]);
 
     const getProducts = async () => {
         setLoading(true);
@@ -22,14 +22,43 @@ const Products = () => {
         setLoading(false);
     }
 
+    const fetchingCategory = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.get('https://api.escuelajs.co/api/v1/categories');
+            console.log(response.data);
+            setCategory(response.data);
+        } catch(error) {
+            console.log(error);
+        }
+        setLoading(false);
+    }
+
     useEffect(() => {
         getProducts();
-    }, []);
+        fetchingCategory();
+    }, [categoryId]);
 
   return (
     <div className='products'>
         <h1>Products</h1>
         <br />
+
+        <div className='cards-container'>
+        { loading && <h1>Loading...</h1> } 
+
+        { !loading && category.map((choice) => {
+            return (
+                <Button 
+                className='m-2'
+                onClick={() => setCategoryId(choice.id)}
+                >
+                    {choice.name}
+                </Button>
+            )
+            }) 
+        }
+        </div>
 
         <div className='cards-container'>
             { loading && <h1>Loading...</h1> }
