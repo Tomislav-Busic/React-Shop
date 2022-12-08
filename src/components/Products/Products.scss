@@ -7,3 +7,14 @@
 .cards-container {
     @include var.cards-container;
 }
+
+.input {
+    padding: 0 7rem;
+}
+
+
+@media (max-width: '900px') {
+    .input {
+        padding: 0;
+    }
+}

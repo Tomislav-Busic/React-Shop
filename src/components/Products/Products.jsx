@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Products.scss';
 import axios from 'axios';
-import { Card, Button, InputGroup, Form } from 'react-bootstrap';
+import { Button, InputGroup, Form } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
+import ProductCard from '../ProductCard/ProductCard';
 
 const Products = () => {
     const [categoryId, setCategoryId] = useState(localStorage.getItem('id'));
@@ -62,7 +63,7 @@ const Products = () => {
         </div>
 
         <br />
-        <InputGroup className="mb-3">
+        <InputGroup className="mb-3 input">
             <Form.Control
               aria-label="Default"
               aria-describedby="inputGroup-sizing-default"
@@ -82,18 +83,7 @@ const Products = () => {
                     product.title.includes(searchName)
                 ).map((product) => {
                     return (
-                        <Card className='card' >
-                            <Card.Img className='image' variant="top" src={ product.images[0] } />
-                            <Card.Body>
-                            <Card.Title>{ product.title }</Card.Title>
-                            <Card.Title>${ product.price }</Card.Title>
-                                <Button 
-                                      variant="primary" 
-                                      >
-                                        See More
-                                </Button>
-                            </Card.Body>
-                        </Card>
+                        <ProductCard product={product} />
                     )
                 }) :
                 <h1 style={{ textAlign: 'center' }}>
