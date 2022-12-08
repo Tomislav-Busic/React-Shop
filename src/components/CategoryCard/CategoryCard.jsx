@@ -5,10 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
 const CategoryCard = (props) => {
-  const handleId = (id) => {
-    localStorage.setItem('id', id);
-  }
-
   return (
     <div>
         <Card className='card' >
@@ -18,7 +14,7 @@ const CategoryCard = (props) => {
               <Link to='/products'>
                 <Button 
                       variant="primary" 
-                      onClick={() => handleId(props.category.id)}
+                      onClick={() => props.handleId(props.category.id)}
                       >
                         See More
                 </Button>

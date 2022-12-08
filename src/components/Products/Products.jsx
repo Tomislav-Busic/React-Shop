@@ -5,7 +5,7 @@ import { Card, Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Products = () => {
-    const [categoryID, setCategoryID] = useState('');
+    const [categoryID, setCategoryID] = useState(localStorage.getItem('id'));
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
@@ -21,10 +21,6 @@ const Products = () => {
         }
         setLoading(false);
     }
-
-    useEffect(() => {
-        setCategoryID(localStorage.getItem('id'));
-    }, []);
 
     useEffect(() => {
         getProducts();

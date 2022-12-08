@@ -21,7 +21,11 @@ const Home = () => {
 
     useEffect(() => {
         fetchingData();
-    }, [])
+    }, []);
+ 
+     const handleId = (id) => {
+       localStorage.setItem('id', id);
+     }
 
   return (
     <div className='home'>
@@ -34,7 +38,7 @@ const Home = () => {
             { !loading && 
                 data.map((category) => {
                     return (
-                        <CategoryCard category={category} />
+                        <CategoryCard category={category} handleId={handleId} />
                     )
                 })
             }
