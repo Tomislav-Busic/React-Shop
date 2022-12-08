@@ -5,7 +5,7 @@ import { Card, Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Products = () => {
-    const [categoryID, setCategoryID] = useState(localStorage.getItem('id'));
+    const [categoryId, setCategoryId] = useState(localStorage.getItem('id'));
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
@@ -13,7 +13,7 @@ const Products = () => {
     const getProducts = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`https://api.escuelajs.co/api/v1/categories/${categoryID}/products`);
+            const response = await axios.get(`https://api.escuelajs.co/api/v1/categories/${categoryId}/products`);
             console.log(response.data);
             setProducts(response.data);
         } catch(error) {
