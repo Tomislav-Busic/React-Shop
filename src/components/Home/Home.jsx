@@ -25,16 +25,16 @@ const Home = () => {
 
   return (
     <div className='home'>
-        <h1>Home</h1>
+        <h1>Category</h1>
         <br />
         
         <div className='cards-container'>
             { loading && <h1>Loading...</h1> }
 
             { !loading && 
-                data.map((product) => {
+                data.map((category) => {
                     return (
-                        <CategoryCard product={product} />
+                        <CategoryCard category={category} />
                     )
                 })
             }
