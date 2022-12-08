@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Products.scss';
 import axios from 'axios';
-import { Button, InputGroup, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProductCard from '../ProductCard/ProductCard';
+import Filters from '../Filters/Filters';
 
 const Products = () => {
     const [categoryId, setCategoryId] = useState(localStorage.getItem('id'));
@@ -41,6 +42,15 @@ const Products = () => {
         fetchingCategory();
     }, [categoryId]);
 
+    const handlePrice = (value) => {
+        const newPrices = [...products];
+        if ( value === 'lower') {
+            setProducts(newPrices.sort((a,b) => a.price - b.price));
+        } else {
+            setProducts(newPrices.sort((a,b) => b.price - a.price));
+        }
+    }
+
   return (
     <div className='products'>
         <h1>Products</h1>
@@ -63,14 +73,7 @@ const Products = () => {
         </div>
 
         <br />
-        <InputGroup className="mb-3 input">
-            <Form.Control
-              aria-label="Default"
-              aria-describedby="inputGroup-sizing-default"
-              placeholder='Search by Name'
-              onChange={(e) => setSearchName(e.target.value)}
-            />
-        </InputGroup>
+        <Filters setSearchName={setSearchName} handlePrice={handlePrice} />
         <br />
 
         <div className='cards-container'>
