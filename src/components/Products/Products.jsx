@@ -63,7 +63,8 @@ const Products = () => {
         <div className='cards-container'>
             { loading && <h1>Loading...</h1> }
 
-            { !loading &&
+            { products.length > 0 ?
+                !loading &&
                 products.map((product) => {
                     return (
                         <Card className='card' >
@@ -78,7 +79,10 @@ const Products = () => {
                             </Card.Body>
                         </Card>
                     )
-                })
+                }) :
+                <h1 style={{ textAlign: 'center' }}>
+                    Sorry this type of Products was not found! Please try another Category :)
+                </h1>
             }
         </div>
     </div>
