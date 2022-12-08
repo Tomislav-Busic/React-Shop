@@ -29,7 +29,7 @@ const Home = () => {
 
   return (
     <div className='home'>
-        <h1>Category</h1>
+        <h1>Categories</h1>
         <br />
         
         <div className='cards-container'>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Products.scss';
 import axios from 'axios';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, InputGroup, Form } from 'react-bootstrap';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Products = () => {
@@ -9,6 +9,7 @@ const Products = () => {
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
     const [category, setCategory] = useState([]);
+    const [searchName, setSearchName] = useState('');
 
     const getProducts = async () => {
         setLoading(true);
@@ -48,29 +49,44 @@ const Products = () => {
         { loading && <h1>Loading...</h1> } 
 
         { !loading && category.map((choice) => {
-            return (
-                <Button 
-                className='m-2'
-                onClick={() => setCategoryId(choice.id)}
-                >
-                    {choice.name}
-                </Button>
-            )
-            }) 
+                return (
+                    <Button 
+                    className='m-2'
+                    onClick={() => setCategoryId(choice.id)}
+                    >
+                        {choice.name}
+                    </Button>
+                );
+            })
         }
         </div>
+
+        <br />
+        <InputGroup className="mb-3">
+            <Form.Control
+              aria-label="Default"
+              aria-describedby="inputGroup-sizing-default"
+              placeholder='Search by Name'
+              onChange={(e) => setSearchName(e.target.value)}
+            />
+        </InputGroup>
+        <br />
 
         <div className='cards-container'>
             { loading && <h1>Loading...</h1> }
 
             { products.length > 0 ?
                 !loading &&
-                products.map((product) => {
+                products.filter((product) => 
+                    product.title.toLowerCase().includes(searchName) ||
+                    product.title.includes(searchName)
+                ).map((product) => {
                     return (
                         <Card className='card' >
                             <Card.Img className='image' variant="top" src={ product.images[0] } />
                             <Card.Body>
-                              <Card.Title>{ product.title }</Card.Title>
+                            <Card.Title>{ product.title }</Card.Title>
+                            <Card.Title>${ product.price }</Card.Title>
                                 <Button 
                                       variant="primary" 
                                       >
