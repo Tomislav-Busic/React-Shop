@@ -3,20 +3,11 @@
 .product {
     @include var.layout;
 
-    .img-slider {
-        
-        img{
-            &:first-child{
-                display: block;
-            }
-
-            display: none;
-            width: 5rem;
-            height: 5rem; 
-        }
-        
+    .slider {
+        height: 20rem;
+        width: 20rem;
     }
-
+    
     p {
         padding: 0 8rem;
         font-size: 1rem;

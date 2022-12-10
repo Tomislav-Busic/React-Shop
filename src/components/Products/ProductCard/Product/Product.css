@@ -7,13 +7,9 @@
   align-items: center;
   flex-direction: column;
 }
-.product .img-slider img {
-  display: none;
-  width: 5rem;
-  height: 5rem;
-}
-.product .img-slider img:first-child {
-  display: block;
+.product .slider {
+  height: 20rem;
+  width: 20rem;
 }
 .product p {
   padding: 0 8rem;

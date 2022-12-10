@@ -3,6 +3,7 @@ import './Product.scss';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SimpleImageSlider from "react-simple-image-slider";
 
 const Product = () => {
     const [ product, setProduct ] = useState({});
@@ -32,25 +33,22 @@ const Product = () => {
 
         { !loading && 
             <>  
-                <div className='img-slider'>
-                    <Button>prev</Button>
-                    {
-                        product.images.map((img) => {
-                            return (
-                                <img src={img} /> 
-                            )
-                        })
-                    }
-                    <Button>next</Button>  
-                </div>
+                
+                <SimpleImageSlider
+                    width={  396 }
+                    height={  396 }
+                    images={product.images}
+                    showBullets={true}
+                    showNavs={true}
+                />
+                <br />
 
                 <h1>{ product.title }</h1>
                 <h2>${ product.price }</h2>
                 <br />
-
+                
                 { toggle && <p> { product.description.substring(0, 50) }... </p> }
                 { !toggle && <p> { product.description } </p> }
-                
                 <Button 
                     onClick={() => setToggle(!toggle)}
                     variant={ toggle ? 'primary' : 'secondary' }
