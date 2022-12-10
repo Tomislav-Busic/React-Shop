@@ -1,0 +1,29 @@
+.product {
+  padding: 5rem 1rem;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.product .img-slider img {
+  display: none;
+  width: 5rem;
+  height: 5rem;
+}
+.product .img-slider img:first-child {
+  display: block;
+}
+.product p {
+  padding: 0 8rem;
+  font-size: 1rem;
+  font-weight: bolder;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .product p {
+    padding: 0 1rem;
+  }
+}/*# sourceMappingURL=Product.css.map */

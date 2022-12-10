@@ -22,6 +22,7 @@ const ProductCard = (props) => {
               <Card.Title>${ props.product.price }</Card.Title>
                   <Link to="/product">
                     <Button 
+                          onClick={() => props.productId(props.product.id)}
                           variant="primary" 
                           >
                             See More

@@ -88,6 +88,10 @@ const Products = () => {
         }
     }
 
+    const productId = (proId) => {
+        localStorage.setItem('proId', proId);
+    }
+
   return (
     <div className='products'>
         <h1>{categoryName === '' ? 'All products' : categoryName}</h1>
@@ -137,7 +141,10 @@ const Products = () => {
                     product.title.includes(searchName)
                 ).map((product) => {
                     return (
-                        <ProductCard product={product} />
+                        <ProductCard 
+                            productId={productId}
+                            product={product}
+                         />
                     )
                 }) :
                 <h1 style={{ textAlign: 'center' }}>
