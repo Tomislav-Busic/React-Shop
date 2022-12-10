@@ -2,18 +2,35 @@
 
 .product {
     @include var.layout;
+    position: relative;
 
     .slider {
         height: 20rem;
         width: 20rem;
     }
-    
+
     p {
         padding: 0 8rem;
         font-size: 1rem;
         font-weight: bolder;
         text-align: center;
     }
+
+    .add-chart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        .quantity {
+            display: flex;
+        }
+    }
+
+    .card {
+        position: absolute;
+    }
+    
 }
 
 
