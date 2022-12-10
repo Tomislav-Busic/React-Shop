@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header&&Footer/Header';
 import Home from './components/Home/Home';
 import Products from './components/Products/Products';
-
+import Product from './components/Products/ProductCard/Product/Product';
 
 
 function App() {
@@ -15,6 +15,8 @@ function App() {
         <Routes>
           <Route path='/' element={ <Home /> } />
           <Route path='/products' element={ <Products /> } />
+          <Route path='/product' element={ <Product /> } />
+          <Route path='*' element={ <h1>Sorry, page not found!</h1> } />
         </Routes>
       </Router>
   );

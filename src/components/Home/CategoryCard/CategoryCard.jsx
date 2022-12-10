@@ -14,7 +14,7 @@ const CategoryCard = (props) => {
               <Link to='/products'>
                 <Button 
                       variant="primary" 
-                      onClick={() => props.handleId(props.category.id)}
+                      onClick={() => props.handleId(props.category.id, props.category.name)}
                       >
                         See More
                 </Button>

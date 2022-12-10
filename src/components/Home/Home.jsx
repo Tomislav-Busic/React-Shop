@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Home.scss';
 import axios from 'axios';
-import CategoryCard from '../CategoryCard/CategoryCard';
+import CategoryCard from './CategoryCard/CategoryCard';
 
 const Home = () => {
     const [loading, setLoading] = useState(true);
@@ -23,8 +23,9 @@ const Home = () => {
         fetchingData();
     }, []);
  
-     const handleId = (id) => {
+     const handleId = (id, name) => {
        localStorage.setItem('id', id);
+       localStorage.setItem('name', name);
      }
 
   return (
