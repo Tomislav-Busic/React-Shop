@@ -28,7 +28,7 @@ const SuccessMessage = (props) => {
                                 See other products
                         </Button>
                     </Link>
-                    <Link>
+                    <Link to='/cart'>
                         <Button
                             variant='success' 
                             onClick={props.handleClose}   

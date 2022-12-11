@@ -1,0 +1,12 @@
+@use '../../App.scss' as var;
+
+.cart {
+    @include var.layout;
+}
+
+.total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

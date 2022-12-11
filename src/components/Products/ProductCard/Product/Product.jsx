@@ -11,7 +11,7 @@ const Product = () => {
     const [ product, setProduct ] = useState({});
     const [ loading, setLoading ] = useState(true);
     const [toggle, setToggle] = useState(true);
-    const [toggleChart, setToggleChart] = useState(true);
+    const [toggleCart, setToggleCart] = useState(true);
     const [quantity, setQuantity] = useState(0);
     const [number, setNumber] = useState(0);
     const [toggleChartMess, setToggleChartMess] = useState(true);
@@ -58,11 +58,11 @@ const Product = () => {
     const handleConfirm = () => {
         if ( number > 0 ) {
             axios.post('https://638267ff9842ca8d3ca87c97.mockapi.io/shop', {
-            name: product.name,
+            name: product.title,
             quantity: number,
             price: quantity
             }).then(() => {
-                setToggleChart(true)
+                setToggleCart(true)
                 setIsDisabled(true)
             }).then(() => {
                 setToggleChartMess(false)
@@ -109,14 +109,14 @@ const Product = () => {
 
                 <Button 
                     disabled={ isDisabled ? true : false }
-                    variant={ toggleChart ? 'warning' : 'secondary' }
-                    onClick={() => setToggleChart(!toggleChart)} 
+                    variant={ toggleCart ? 'warning' : 'secondary' }
+                    onClick={() => setToggleCart(!toggleCart)} 
                     >
-                        { toggleChart ? 'Add to chart' : 'Close' }
+                        { toggleCart ? 'Add to cart' : 'Close' }
                 </Button>
                 <br />
 
-                { !toggleChart && 
+                { !toggleCart && 
                     <AddToCart
                         product={product}
                         quantity={quantity}
