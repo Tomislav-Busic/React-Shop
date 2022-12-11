@@ -1,0 +1,13 @@
+.add-chart {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 0.5rem solid grey;
+    border-radius: 1rem;
+    
+    .quantity {
+        display: flex;
+    }
+}

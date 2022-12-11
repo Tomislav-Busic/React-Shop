@@ -15,4 +15,5 @@ npm i react-router-dom
 npm i axios
 npm i bootstrap react-bootstrap
 npm i sass
+npm install react-simple-image-slider
 */

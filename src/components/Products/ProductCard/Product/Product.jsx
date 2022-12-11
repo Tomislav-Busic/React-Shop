@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Product.scss';
 import axios from 'axios';
-import { Button, Card } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SimpleImageSlider from "react-simple-image-slider";
-import { Link } from 'react-router-dom';
+import SuccessMessage from './SuccessMessage/SuccessMessage';
+import AddToCart from './AddToCart/AddToCart';
 
 const Product = () => {
     const [ product, setProduct ] = useState({});
@@ -14,6 +15,7 @@ const Product = () => {
     const [quantity, setQuantity] = useState(0);
     const [number, setNumber] = useState(0);
     const [toggleChartMess, setToggleChartMess] = useState(true);
+    const [isDisabled, setIsDisabled] = useState(false);
 
     const fetchProduct = async () => {
         setLoading(true);
@@ -60,9 +62,19 @@ const Product = () => {
             quantity: number,
             price: quantity
             }).then(() => {
+                setToggleChart(true)
+                setIsDisabled(true)
+            }).then(() => {
                 setToggleChartMess(false)
             })
-        }
+        } 
+    }
+
+    const handleClose = () => {
+        setToggleChartMess(true);
+        setIsDisabled(false);
+        setNumber(0);
+        setQuantity(0);
     }
 
   return (
@@ -96,6 +108,7 @@ const Product = () => {
                 <br />
 
                 <Button 
+                    disabled={ isDisabled ? true : false }
                     variant={ toggleChart ? 'warning' : 'secondary' }
                     onClick={() => setToggleChart(!toggleChart)} 
                     >
@@ -104,66 +117,22 @@ const Product = () => {
                 <br />
 
                 { !toggleChart && 
-                <div className='add-chart'>
-
-                    <h2>Quantity</h2>
-                    <br />
-
-                    <div className='quantity' >
-                        <Button 
-                            className='m-2' 
-                            onClick={handleDecrement}
-                            >
-                                -
-                        </Button>
-                        <h3>{ number }</h3>
-                        <Button 
-                            className='m-2' 
-                            onClick={handleIncrement}
-                            >
-                                +
-                        </Button>
-                    </div>
-
-                    <h3 style={{textAlign: 'center'}}>${ quantity }</h3>
-                    <br/>
-
-                    <Button 
-                        variant='warning' 
-                        onClick={handleConfirm}
-                    >
-                        Add
-                    </Button>
-                </div> 
+                    <AddToCart
+                        product={product}
+                        quantity={quantity}
+                        number={number}
+                        handleDecrement={handleDecrement}
+                        handleIncrement={handleIncrement}
+                        handleConfirm={handleConfirm}
+                    />
                 }
 
                 { !toggleChartMess &&
-                    <div className='card'>
-                            <Card  >
-                                <Card.Body>
-                                    <Card.Title>
-                                        Congratulations, you have successfully added the { product.title } to the cart.
-                                    </Card.Title>
-
-                                    <Button 
-                                          className='m-2'  
-                                          variant="primary" 
-                                          onClick={() => setToggleChartMess(true)}
-                                          >
-                                            Close
-                                    </Button>
-
-                                    <Link>
-                                        <Button
-                                            variant='success'    
-                                        >
-                                            Go to chart
-                                        </Button>
-                                    </Link>
-
-                                </Card.Body>
-                            </Card>
-                    </div>
+                    <SuccessMessage 
+                        product={product}
+                        number={number}
+                        handleClose={handleClose}
+                    />
                 }
             </>
         }
